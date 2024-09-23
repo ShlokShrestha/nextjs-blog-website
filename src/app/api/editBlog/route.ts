@@ -2,23 +2,27 @@ import prisma from "@/lib/prisma";
 import { getCurrentUser } from "@/lib/session";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function POST(req: NextRequest) {
+export async function Patch(req: NextRequest) {
   const user = await getCurrentUser();
   try {
-    if (!user?.email) {
+    if (!user) {
       return NextResponse.json(
         { message: "Not Authenticated!" },
         { status: 401 }
       );
     }
-    const { title, content } = await req.json();
-    const createBlogPost = await prisma.post.create({
+    const { id, title, content } = await req.json();
+    const updatedBlogPost = await prisma.post.update({
+      where: {
+        id: id,
+      },
       data: { title: title, content: content, authorEmail: user.email },
     });
-    if (createBlogPost) {
+
+    if (updatedBlogPost) {
       return NextResponse.json({
         success: true,
-        message: "Successfull create blog ",
+        message: "Successfull updated blog ",
       });
     } else {
       return NextResponse.json({
