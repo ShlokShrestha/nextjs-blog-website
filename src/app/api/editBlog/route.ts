@@ -18,7 +18,6 @@ export async function Patch(req: NextRequest) {
       },
       data: { title: title, content: content, authorEmail: user.email },
     });
-
     if (updatedBlogPost) {
       return NextResponse.json({
         success: true,
