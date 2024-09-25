@@ -20,6 +20,7 @@ const BlogDetailPage: FC<BlogDetailPageProps> = async ({ params }) => {
 
   return (
     <div className="max-w-4xl mx-auto py-8">
+      <img src={post?.imageUrl as string} alt="" />
       <h1 className="text-3xl font-bold">{post?.title}</h1>
       <p>Written by: {post?.author?.name}</p>
       <div className="mt-4">{post?.content}</div>
