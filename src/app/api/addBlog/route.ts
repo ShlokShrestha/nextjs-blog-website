@@ -22,14 +22,12 @@ export async function POST(req: NextRequest) {
     const title = formData.get("title") as string;
     const content = formData.get("content") as string;
     const file: any = formData.get("image") as File | null;
-
     if (!title || !content) {
       return NextResponse.json(
         { message: "Title and content are required." },
         { status: 400 }
       );
     }
-
     if (file) {
       const fileBuffer = await file.arrayBuffer();
       const buffer = Buffer.from(fileBuffer);
