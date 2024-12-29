@@ -16,7 +16,6 @@ const AddNewBlog = () => {
   const [file, setFile] = useState<File | null>(null); // Explicitly declare as File or null
   const [loading, setLoading] = useState(false);
   const router = useRouter();
-
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
